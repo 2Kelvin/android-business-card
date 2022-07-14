@@ -24,6 +24,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +35,13 @@ import com.example.businesscard.ui.theme.BusinessCardTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val myFont = FontFamily(
+            Font(R.font.lexend_thin, FontWeight.Thin),
+            Font(R.font.lexend_regular, FontWeight.Normal),
+            Font(R.font.lexend_bold, FontWeight.Bold)
+        )
+
         setContent {
             BusinessCardTheme {
                 // A surface container using the 'background' color from the theme
@@ -45,6 +55,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+// my custom font
+val myFont = FontFamily(
+    Font(R.font.lexend_thin, FontWeight.Thin),
+    Font(R.font.lexend_regular, FontWeight.Normal),
+    Font(R.font.lexend_bold, FontWeight.Bold)
+)
 
 @Composable
 fun CardLayout() {
@@ -61,13 +77,17 @@ fun CardLayout() {
             )
             Text(
                 text = "RocketMan",
-                fontSize = 55.sp,
-                color = Color.White
+                fontSize = 60.sp,
+                color = Color.White,
+                fontFamily = myFont,
+                fontWeight = FontWeight.Bold
             )
             Text(
                 text = "Android Developer",
                 fontSize = 15.sp,
-                color = colorResource(R.color.teal_700)
+                color = colorResource(R.color.teal_700),
+                fontFamily = myFont,
+                fontWeight = FontWeight.Bold
             )
         }
         Column() {
@@ -84,7 +104,8 @@ fun CardLayout() {
                     text = "+254 712 345 678",
                     Modifier.weight(4f),
                     Color.White,
-                    fontSize = 23.sp
+                    fontSize = 23.sp,
+                    fontFamily = myFont
                 )
             }
             Row() {
@@ -100,7 +121,8 @@ fun CardLayout() {
                     text = "+254 712 345 678",
                     Modifier.weight(4f),
                     Color.White,
-                    fontSize = 23.sp
+                    fontSize = 23.sp,
+                    fontFamily = myFont
                 )
             }
             Row() {
@@ -116,7 +138,8 @@ fun CardLayout() {
                     text = "myEmail@gmail.com",
                     Modifier.weight(4f),
                     Color.White,
-                    fontSize = 23.sp
+                    fontSize = 23.sp,
+                    fontFamily = myFont
                 )
             }
         }
