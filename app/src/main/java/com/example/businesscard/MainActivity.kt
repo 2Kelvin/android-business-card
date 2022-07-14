@@ -98,7 +98,7 @@ fun BusinessCard() {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(Modifier.padding(bottom = 10.dp)) {
+            Row {
                 Icon(
                     imageVector = Icons.Outlined.Call,
                     contentDescription = stringResource(R.string.call_icon),
@@ -115,7 +115,10 @@ fun BusinessCard() {
                     fontFamily = myFont
                 )
             }
-            Row(Modifier.padding(bottom = 10.dp)) {
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row {
                 Icon(
                     imageVector = Icons.Outlined.Person,
                     contentDescription = stringResource(R.string.alias_icon),
@@ -132,6 +135,9 @@ fun BusinessCard() {
                     fontFamily = myFont
                 )
             }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
             Row {
                 Icon(
                     imageVector = Icons.Outlined.Email,
