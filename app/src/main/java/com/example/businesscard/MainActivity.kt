@@ -3,30 +3,31 @@ package com.example.businesscard
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Call
 import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +36,6 @@ import com.example.businesscard.ui.theme.BusinessCardTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val myFont = FontFamily(
-            Font(R.font.lexend_thin, FontWeight.Thin),
-            Font(R.font.lexend_regular, FontWeight.Normal),
-            Font(R.font.lexend_bold, FontWeight.Bold)
-        )
-
         setContent {
             BusinessCardTheme {
                 // A surface container using the 'background' color from the theme
@@ -49,12 +43,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    CardLayout()
+                    BusinessCard()
                 }
             }
         }
     }
 }
+
 // my custom font
 val myFont = FontFamily(
     Font(R.font.lexend_thin, FontWeight.Thin),
@@ -63,80 +58,92 @@ val myFont = FontFamily(
 )
 
 @Composable
-fun CardLayout() {
+fun BusinessCard() {
     Column(
         Modifier
             .background(Color.Black)
-            .fillMaxSize()
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center
     ) {
 
-        Column() {
+        // column image, name and job title
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 55.dp)
+        ) {
             Image(
                 painter = painterResource(R.drawable.android_logo),
-                contentDescription = null
+                contentDescription = stringResource(R.string.android_image),
+                Modifier.size(185.dp)
             )
             Text(
-                text = "RocketMan",
-                fontSize = 60.sp,
+                text = stringResource(R.string.kelvin),
+                fontSize = 80.sp,
                 color = Color.White,
                 fontFamily = myFont,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "Android Developer",
-                fontSize = 15.sp,
+                text = stringResource(R.string.developer),
+                fontSize = 22.sp,
                 color = colorResource(R.color.teal_700),
                 fontFamily = myFont,
                 fontWeight = FontWeight.Bold
             )
         }
-        Column() {
-            Row() {
+
+        // column contacts and icons
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(Modifier.padding(bottom = 10.dp)) {
                 Icon(
                     imageVector = Icons.Outlined.Call,
-                    contentDescription = "Call Icon",
+                    contentDescription = stringResource(R.string.call_icon),
                     Modifier
                         .size(40.dp)
                         .weight(1f),
-                    colorResource(R.color.teal_200)
+                    tint = colorResource(R.color.android_green)
                 )
                 Text(
-                    text = "+254 712 345 678",
-                    Modifier.weight(4f),
+                    text = stringResource(R.string.number),
+                    Modifier.weight(3f),
                     Color.White,
                     fontSize = 23.sp,
                     fontFamily = myFont
                 )
             }
-            Row() {
+            Row(Modifier.padding(bottom = 10.dp)) {
                 Icon(
-                    imageVector = Icons.Outlined.Call,
-                    contentDescription = "Call Icon",
+                    imageVector = Icons.Outlined.Person,
+                    contentDescription = stringResource(R.string.alias_icon),
                     Modifier
                         .size(40.dp)
                         .weight(1f),
-                    colorResource(R.color.teal_200)
+                    tint = colorResource(R.color.android_green)
                 )
                 Text(
-                    text = "+254 712 345 678",
-                    Modifier.weight(4f),
+                    text = stringResource(R.string.alias),
+                    Modifier.weight(3f),
                     Color.White,
                     fontSize = 23.sp,
                     fontFamily = myFont
                 )
             }
-            Row() {
+            Row {
                 Icon(
                     imageVector = Icons.Outlined.Email,
-                    contentDescription = "Call Icon",
+                    contentDescription = stringResource(R.string.email_icon),
                     Modifier
                         .size(40.dp)
                         .weight(1f),
-                    colorResource(R.color.teal_200)
+                    tint = colorResource(R.color.android_green)
                 )
                 Text(
-                    text = "myEmail@gmail.com",
-                    Modifier.weight(4f),
+                    text = stringResource(R.string.email),
+                    Modifier.weight(3f),
                     Color.White,
                     fontSize = 23.sp,
                     fontFamily = myFont
@@ -150,6 +157,6 @@ fun CardLayout() {
 @Composable
 fun BusinessCardPreview() {
     BusinessCardTheme {
-        CardLayout()
+        BusinessCard()
     }
 }

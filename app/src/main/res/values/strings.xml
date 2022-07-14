@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Business Card</string>
+    <string name="kelvin">Kelvin</string>
+    <string name="developer">Android Developer</string>
+    <string name="email">myEmail@gmail.com</string>
+    <string name="alias">\@RocketMan</string>
+    <string name="email_icon">Email Icon</string>
+    <string name="alias_icon">Alias Icon</string>
+    <string name="number">+254 712 345 678</string>
+    <string name="call_icon">Call Icon</string>
+    <string name="android_image">android image</string>
 </resources>
